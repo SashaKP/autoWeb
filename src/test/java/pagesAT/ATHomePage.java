@@ -59,11 +59,12 @@ public class ATHomePage extends BasePageAT{
 		}
 
 		//Verifying the Search Button is enabled.
-//		public void verifyButton() {
-//
-//			Assert.assertTrue(searchButton.isEnabled());
-//
-//		}
+		public void verifySearchButton() {
+
+			Assert.assertTrue(searchButton.isDisplayed());
+			Assert.assertTrue(searchButton.isEnabled());
+
+		}
 
 		//Verifying the Make and Model dropdowns are visible.
 	public void verifyMakeAndModel(String expected) {
@@ -82,12 +83,10 @@ public class ATHomePage extends BasePageAT{
 		Assert.assertEquals(actual,expected);
 
 }
-//
-//		public void multiplechoice(String model){
-//
-//			makeElement.sendKeys(model);
-//		}
+		
 		public void ZipCodeField() {
+			
+			Assert.assertTrue(zipCode.isDisplayed());
 			zipCode.clear();
 			Assert.assertTrue(zipCode.isEnabled());
 		}

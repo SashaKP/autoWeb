@@ -48,8 +48,7 @@ public class ATHomePageSteps {
 
 	@Then("User verifies {string} window is present")
 	public void user_verifies_window_is_present(String string) {
-
-		Assert.assertTrue(homePage.zipCode.isDisplayed());
+	
 		// clears the field and checks if Enabled
 		homePage.ZipCodeField();
 
@@ -58,8 +57,7 @@ public class ATHomePageSteps {
 	@Then("User verifies Search button is present")
 	public void user_verifies_Search_button_is_present() {
 
-		Assert.assertTrue(homePage.searchButton.isDisplayed());
-		Assert.assertTrue(homePage.searchButton.isEnabled());
+		
 	}
 
 	@Given("User clicks on Advanced Search Link on the Home Page")

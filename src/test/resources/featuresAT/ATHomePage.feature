@@ -15,12 +15,12 @@ Feature: Verifying HP search windows Make, Model, ZipCode
   And User verifies "ZipCode" window is present
   And User verifies Search button is present
  
-#@AdvancedSearch
- #Scenario: User checks Advanced Search link
-  #
-  #Given User clicks on Advanced Search Link on the Home Page
-  #Then User enters "30004" into ZipCode box
-  #Then User selects "Certified" Check box under "Condition" section
+@AdvancedSearch
+ Scenario: User checks Advanced Search link
+  
+  Given User clicks on Advanced Search Link on the Home Page
+  Then User enters "30004" into ZipCode box
+  Then User selects "Certified" Check box under "Condition" section
   #Then User selects "20_000" in Minimum dDown and "75_000" Maximum dDown
   #Then User selects "Convertible" Check box under "Style" section
   #Then User updates "2017" in From dDown and "2020" in To dDown
