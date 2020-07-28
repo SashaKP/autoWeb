@@ -1,0 +1,183 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2020-07-28T01:47:51.842Z",
+        "before": [
+          {
+            "result": {
+              "duration": 571400,
+              "status": "skipped"
+            },
+            "match": {
+              "location": "HooksAT.setup()"
+            }
+          }
+        ],
+        "line": 5,
+        "name": "User opens the given URL and verifies Make, Model, Zip Code, AdvancedSearch, Search",
+        "description": "",
+        "id": "verifying-hp-search-windows-make--model--zipcode;user-opens-the-given-url-and-verifies-make--model--zip-code--advancedsearch--search",
+        "after": [
+          {
+            "result": {
+              "duration": 5500,
+              "status": "skipped"
+            },
+            "match": {
+              "location": "HooksAT.teardown(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 72300,
+              "status": "skipped"
+            },
+            "line": 7,
+            "name": "User opens Autotraders Website and verifies Title",
+            "match": {
+              "location": "ATHomePageSteps.user_opens_Autotraders_Website_and_verifies_Title()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 9899,
+              "status": "skipped"
+            },
+            "line": 9,
+            "name": "User verifies link \"Browse by Make\" is present",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Browse by Make\"",
+                  "offset": 19
+                }
+              ],
+              "location": "ATHomePageSteps.user_verifies_link_is_present(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 5401,
+              "status": "skipped"
+            },
+            "line": 10,
+            "name": "User verifies link \"Browse by Style\" is present",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Browse by Style\"",
+                  "offset": 19
+                }
+              ],
+              "location": "ATHomePageSteps.user_verifies_link_is_present(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 5001,
+              "status": "skipped"
+            },
+            "line": 11,
+            "name": "User verifies link \"Advanced Search\" is present",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Advanced Search\"",
+                  "offset": 19
+                }
+              ],
+              "location": "ATHomePageSteps.user_verifies_link_is_present(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4799,
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "User verifies dropDown \"Any Make\" is present",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Any Make\"",
+                  "offset": 23
+                }
+              ],
+              "location": "ATHomePageSteps.user_verifies_dropDown_is_present(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5099,
+              "status": "skipped"
+            },
+            "line": 14,
+            "name": "User verifies dropDown \"Any Model\" is present",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Any Model\"",
+                  "offset": 23
+                }
+              ],
+              "location": "ATHomePageSteps.user_verifies_dropDown_is_present(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 15800,
+              "status": "skipped"
+            },
+            "line": 16,
+            "name": "User verifies \"ZipCode\" window is present",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"ZipCode\"",
+                  "offset": 14
+                }
+              ],
+              "location": "ATHomePageSteps.user_verifies_window_is_present(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 7299,
+              "status": "skipped"
+            },
+            "line": 17,
+            "name": "User verifies Search button is present",
+            "match": {
+              "location": "ATHomePageSteps.user_verifies_Search_button_is_present()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Verify"
+          }
+        ]
+      }
+    ],
+    "name": "Verifying HP search windows Make, Model, ZipCode",
+    "description": "",
+    "id": "verifying-hp-search-windows-make--model--zipcode",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/featuresAT/ATHomePage.feature",
+    "tags": []
+  }
+]

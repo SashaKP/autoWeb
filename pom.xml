@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.autotraderApp</groupId>
+  <artifactId>autotraderApp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>autotraderApp</name>
+  <description>inTest</description>
+  <properties> <!-- TO UPDATE JAVA JRE LIBS VERSION IF LOWER:) -->
+  
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		
+		 <name>My AutoTrader</name>
+        <maven.build.timestamp.format>yyyy-MM-dd-HHmm</maven.build.timestamp.format>
+        <buildNumber>${maven.build.timestamp}</buildNumber>
+        <reports.directory>${project.build.directory}/../target/</reports.directory>
+        
+	</properties>
+
+	<dependencies> <!-- We will have several DEPENCENCIES and we have to specify, and we can 
+			copy-paste from Maven Repository site -->
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>3.7.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>4.3.0</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- What is it for????????????????????? -->
+		 <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<!-- in order to execute testcases from command line -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+
+				<configuration>
+					<!-- for parallel testing in Cucumber methods, classes, groups -->
+					<parallel>method </parallel>
+					<forkMode>perthread</forkMode>
+					<threadCount>1</threadCount>
+					<!--  ???????????? look up Google
+					<useUnlimitedThreads>
+					true</useUnlimitedThreads>
+					 -->
+					
+					<!-- need to configure plugin to use only with RunnerClass -->
+					<!-- includes Runner classes -->
+					<includes>
+						<include>**/*Runner.java</include>
+					</includes>
+					<!-- ignore if test fails for reporting?? -->
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>5.0.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>test</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>Autotrader</projectName>
+							<!-- output directory for the generated report -->
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<!-- optional, defaults to outputDirectory if not specified -->
+							<inputDirectory>${project.build.directory}</inputDirectory>
+							<jsonFiles>
+								<!-- supports wildcard or name pattern -->
+								<param>**/cucumber.json</param>
+							</jsonFiles>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
