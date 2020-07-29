@@ -20,10 +20,9 @@ public class HooksAT extends BasePageAT {
 		System.out.println("#### setup! start d######\n");
 
 		MyDriverMultiThreader.get().manage().window().maximize();
-		clearCookies();
 		MyDriverMultiThreader.get().get(ConfigurationReaderAT.getProperty("url"));
+		clearCookies();
 		
-		//DriverSetUp.setUp();
 	}
 
 	@After
@@ -40,8 +39,8 @@ public class HooksAT extends BasePageAT {
 		}
 		System.out.println("###########-THE END-###################");
 		//after every test, we gonna close browser
-		MyDriverMultiThreader.close();
+		//MyDriverMultiThreader.close();
 		
-		//DriverSetUp.tearDown();
+		
 	}
 }

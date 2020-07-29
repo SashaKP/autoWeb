@@ -1,10 +1,15 @@
 package stepsAT;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-
+import pagesAT.ATAdvancedSearchPage;
 import pagesAT.ATHomePage;
 
 import utilitiesAT.MyDriverMultiThreader;
@@ -12,6 +17,7 @@ import utilitiesAT.MyDriverMultiThreader;
 public class ATHomePageSteps {
 	// obj of the page
 	ATHomePage homePage = new ATHomePage();
+	ATAdvancedSearchPage advancedSearchPg = new ATAdvancedSearchPage();
 
 	@Given("User opens Autotraders Website and verifies Title")
 	public void user_opens_Autotraders_Website_and_verifies_Title() {
@@ -30,8 +36,6 @@ public class ATHomePageSteps {
 	public void user_verifies_link_is_present(String string) {
 		// method inside pages
 		homePage.verification(string);
-
-
 	}
 	/*
 	 * verifying MAKE and MODEL dropDowns
@@ -40,12 +44,8 @@ public class ATHomePageSteps {
 	public void user_verifies_dropDown_is_present(String string) {
 
 		homePage.verifyMakeAndModel(string);
-
 	}
-	/*
-	 * verifying Zip Field
-	 */
-
+	//verifying Zip Field
 	@Then("User verifies {string} window is present")
 	public void user_verifies_window_is_present(String string) {
 	
@@ -53,56 +53,96 @@ public class ATHomePageSteps {
 		homePage.ZipCodeField();
 
 	}
-
 	@Then("User verifies Search button is present")
 	public void user_verifies_Search_button_is_present() {
 
-		
+		homePage.verifySearchButton();
 	}
-
 	@Given("User clicks on Advanced Search Link on the Home Page")
-	public void user_clicks_on_Advanced_Search_Link_on_the_Home_Page() {
-
+	public void user_clicks_on_Advanced_Search_Link_on_the_Home_Page() throws InterruptedException {
+				
+		advancedSearchPg.advancedSearchClick(advancedSearchPg.advancedSearch);
+	
 	}
-
 	@Then("User enters {string} into ZipCode box")
 	public void user_enters_into_ZipCode_box(String string) {
-
+		//obj of advancedSearchPage
+		advancedSearchPg.enterZipcode(string);
+		
 	}
-
+//select ceritified and covertible
 	@Then("User selects {string} Check box under {string} section")
 	public void user_selects_Check_box_under_section(String string, String string2) {
-
+		advancedSearchPg.selectCheckbox(string);
 	}
-
+//price
 	@Then("User selects {string} in Minimum dDown and {string} Maximum dDown")
 	public void user_selects_in_Minimum_dDown_and_Maximum_dDown(String string, String string2) {
-
+		
+		advancedSearchPg.selectPrice(string, string2);
 	}
-
+//year
 	@Then("User updates {string} in From dDown and {string} in To dDown")
 	public void user_updates_in_From_dDown_and_in_To_dDown(String string, String string2) {
-
+		//advancedSearchPg.scrollDown(advancedSearchPg.yearFrom);
+		Select select = new Select(advancedSearchPg.yearFrom);
+		select.selectByVisibleText(string);
+		Select select2 = new Select(advancedSearchPg.yearTo);
+		select2.selectByVisibleText(string2);
 	}
-
+//make
 	@Then("User selects {string} in Any Make dDown under Make, Model&Trim section")
 	public void user_selects_in_Any_Make_dDown_under_Make_Model_Trim_section(String string) {
-
+		Select select = new Select(advancedSearchPg.make);
+		select.selectByVisibleText(string);
 	}
-
+//milage
 	@Then("User selects {string} in the Mileage section")
 	public void user_selects_in_the_Mileage_section(String string) {
-
+		Select select = new Select(advancedSearchPg.milage);
+		select.selectByVisibleText(string);
 	}
-
+//color
 	@Then("User clicks on {string} link and checks {string} Check box under Specifications section")
-	public void user_clicks_on_link_and_checks_Check_box_under_Specifications_section(String string, String string2) {
-
-	}
-
+	public void user_clicks_on_link_and_checks_Check_box_under_Specifications_section(String string, String string2) throws InterruptedException {
+		advancedSearchPg.exteriorColor.click();
+		List<WebElement> groupCheckBox = advancedSearchPg.chckBoxOptionsExterior;
+		//this is not working cause it clicks on next element
+//		Iterator<WebElement>it=groupCheckBox.iterator();
+//		while(it.hasNext()) {
+//			//element not interactable----->>>>
+//			//String actual=it.next().getAttribute("value"); //xpath="//div[@data-qaid='chkGrp-spec-Exterior Color-']//input[@type='checkbox']"
+//			String actual = it.next().getText();
+//			System.out.println("Option is " +actual);
+//				if(string2.equalsIgnoreCase(actual)){
+//					System.out.println("you're on the right path");
+//			it.next().click();
+//				
+//				break;
+//			}else {
+//				System.out.println("some sh is happening again");
+//			}
+		for(WebElement checkBox: groupCheckBox) {
+			
+			String actual=checkBox.getText();
+			if(string2.equalsIgnoreCase(actual)){
+				System.out.println("you're on the right path");
+				checkBox.click();
+				break;
+			}
+		}
+			Thread.sleep(1000);
+//		if(string2.equals(advancedSearchPg.silverExterior.getText())){
+//		advancedSearchPg.silverExterior.click();
+		}
+	
+//search click
 	@Then("User clicks Search button")
 	public void user_clicks_Search_button() {
-
+		
+		System.out.println("about to click");
+		advancedSearchPg.bttnSearch.click();
+		System.out.println("you clicked but nothing happend");
 	}
 
 	@Then("User verifies he is in the result page")

@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilitiesAT.ConfigurationReaderAT;
 
+///////JUST MY THING DON"T PAY ATTENTION////////////////////////////////////////
 public class DriverSetUp {
 	public static WebDriver driver;
 

@@ -16,7 +16,7 @@ public class ATHomePage extends BasePageAT{
 	@FindBy  (xpath = "//button[@title='Browse by Style']") //(xpath = "//button[contains (text(), 'Browse by Style')]")
 	public WebElement browseByStyle;
 	
-	@FindBy (xpath = "//a[@data-qaid='adv_srch']") // (xpath ="//a[contains(text(),'Advanced Search')]")
+	@FindBy  (xpath ="//a[contains(text(),'Advanced Search')]") //(xpath = "//a[@data-qaid='adv_srch']") 
 	public WebElement advancedSearch;
 	
 	@FindBy (xpath = "//option[text()='Any Make']")
@@ -38,24 +38,19 @@ public class ATHomePage extends BasePageAT{
 	//Verifying the make,style and advance search elements visibility.
 		public void verification(String expected) {
 
-
 			if (expected.equals(browseByMake.getText())) {
 				String actual = browseByMake.getText();
 				System.out.println("1 "+actual);
 				Assert.assertEquals(expected, actual);
-
 			} else if (expected.equals(browseByStyle.getText())) {
 				String actual = browseByStyle.getText();
 				System.out.println("2 "+actual);
 				Assert.assertEquals(expected, actual);
-
 			} else {
 				String actual = advancedSearch.getText();
 				System.out.println("3 "+actual);
 				Assert.assertEquals(expected, actual);
-
 			}
-
 		}
 
 		//Verifying the Search Button is enabled.
@@ -74,16 +69,14 @@ public class ATHomePage extends BasePageAT{
 			actual=anyModel.getText();
 			System.out.println(actual);
 			Assert.assertTrue(anyModel.isDisplayed());
-			
-		}else if(expected.equals(anyMake.getText())) {
+			}else if(expected.equals(anyMake.getText())) {
 			actual=anyMake.getText();
 			System.out.println(actual);
 			Assert.assertTrue(anyMake.isDisplayed());
 		}
 		Assert.assertEquals(actual,expected);
-
 }
-		
+		//verifying Zip Field
 		public void ZipCodeField() {
 			
 			Assert.assertTrue(zipCode.isDisplayed());

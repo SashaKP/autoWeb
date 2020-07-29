@@ -1,8 +1,13 @@
 package pagesAT;
 
+import java.util.Set;
+
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utilitiesAT.MyDriverMultiThreader;
 
@@ -27,8 +32,8 @@ public class BasePageAT {
 	     */
 		public static void clearCookies() {
 
-//			Set<Cookie> a = MyDriver.get().manage().getCookies();
-//			System.out.println(a);
+			Set<Cookie> a = MyDriverMultiThreader.get().manage().getCookies();
+			System.out.println("Cookies " +a);
 			//Delete all the cookies
 			MyDriverMultiThreader.get().manage().deleteAllCookies();
 
@@ -63,5 +68,23 @@ public class BasePageAT {
 			}
 
 		}
+		/**
+		 * This method will create an Object of WebDriverWait
+		 * 
+		 * @return WebDriverWait
+		 */
+		public static WebDriverWait getWaitObject() {
+			WebDriverWait wait = new WebDriverWait(MyDriverMultiThreader.get(), 30);
+			return wait;
+		}
+		/**
+		 * This method will wait until element becomes clickable
+		 * 
+		 * @param element
+		 */
+		public static void waitForClickability(WebElement element) {
+			getWaitObject().until(ExpectedConditions.elementToBeClickable(element));
+			
+	}
 	
 }
