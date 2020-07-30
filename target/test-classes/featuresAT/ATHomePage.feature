@@ -24,7 +24,7 @@ Feature: Verifying HP search windows Make, Model, ZipCode
   #Then User selects "$20,000" in Minimum dDown and "$75,000" Maximum dDown
   #Then User selects "Convertible" Check box under "Style" section
   #Then User updates "2017" in From dDown and "2020" in To dDown
-  #And User selects "BMW" in Any Make dDown under Make, Model&Trim section
+  And User selects "BMW" in Any Make dDown under Make, Model&Trim section
   And User selects "Under 100,000" in the Mileage section
   And User clicks on "Exterior Color" link and checks "Silver" Check box under Specifications section
   Then User clicks Search button

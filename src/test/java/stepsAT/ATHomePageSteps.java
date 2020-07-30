@@ -1,20 +1,21 @@
 package stepsAT;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Assert;
+
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import pagesAT.ATAdvancedSearchPage;
 import pagesAT.ATHomePage;
-
+import pagesAT.BasePageAT;
 import utilitiesAT.MyDriverMultiThreader;
 
-public class ATHomePageSteps {
+public class ATHomePageSteps extends BasePageAT {
 	// obj of the page
 	ATHomePage homePage = new ATHomePage();
 	ATAdvancedSearchPage advancedSearchPg = new ATAdvancedSearchPage();
@@ -84,11 +85,8 @@ public class ATHomePageSteps {
 //year
 	@Then("User updates {string} in From dDown and {string} in To dDown")
 	public void user_updates_in_From_dDown_and_in_To_dDown(String string, String string2) {
-		//advancedSearchPg.scrollDown(advancedSearchPg.yearFrom);
-		Select select = new Select(advancedSearchPg.yearFrom);
-		select.selectByVisibleText(string);
-		Select select2 = new Select(advancedSearchPg.yearTo);
-		select2.selectByVisibleText(string2);
+		
+		advancedSearchPg.selectYear(string, string2);
 	}
 //make
 	@Then("User selects {string} in Any Make dDown under Make, Model&Trim section")
@@ -105,44 +103,26 @@ public class ATHomePageSteps {
 //color
 	@Then("User clicks on {string} link and checks {string} Check box under Specifications section")
 	public void user_clicks_on_link_and_checks_Check_box_under_Specifications_section(String string, String string2) throws InterruptedException {
-		advancedSearchPg.exteriorColor.click();
-		List<WebElement> groupCheckBox = advancedSearchPg.chckBoxOptionsExterior;
-		//this is not working cause it clicks on next element
-//		Iterator<WebElement>it=groupCheckBox.iterator();
-//		while(it.hasNext()) {
-//			//element not interactable----->>>>
-//			//String actual=it.next().getAttribute("value"); //xpath="//div[@data-qaid='chkGrp-spec-Exterior Color-']//input[@type='checkbox']"
-//			String actual = it.next().getText();
-//			System.out.println("Option is " +actual);
-//				if(string2.equalsIgnoreCase(actual)){
-//					System.out.println("you're on the right path");
-//			it.next().click();
-//				
-//				break;
-//			}else {
-//				System.out.println("some sh is happening again");
-//			}
-		for(WebElement checkBox: groupCheckBox) {
-			
-			String actual=checkBox.getText();
-			if(string2.equalsIgnoreCase(actual)){
-				System.out.println("you're on the right path");
-				checkBox.click();
-				break;
-			}
-		}
-			Thread.sleep(1000);
-//		if(string2.equals(advancedSearchPg.silverExterior.getText())){
-//		advancedSearchPg.silverExterior.click();
-		}
-	
+		advancedSearchPg.selectExteriorColor(string2);
+	}
 //search click
 	@Then("User clicks Search button")
-	public void user_clicks_Search_button() {
+	public void user_clicks_Search_button() throws InterruptedException {
 		
-		System.out.println("about to click");
+//		System.out.println("about to click");
+//		waitForClickability(advancedSearchPg.bttnSearch);
+//		JavascriptExecutor js = (JavascriptExecutor) MyDriverMultiThreader.get();
+//		js.executeScript("arguments[0].click();", advancedSearchPg.bttnSearch);
+//		advancedSearchPg.bttnSearch.click();
+		
+		 
+		//scrollDown(advancedSearchPg.bttnSearch);
+		//getWaitObject().until(ExpectedConditions.elementToBeClickable(link)).click();
+		boolean enabled =advancedSearchPg.bttnSearch.isEnabled();
+		System.out.println(enabled);
+		System.out.println(advancedSearchPg.bttnSearch.getText());
+		Thread.sleep(2000);
 		advancedSearchPg.bttnSearch.click();
-		System.out.println("you clicked but nothing happend");
 	}
 
 	@Then("User verifies he is in the result page")

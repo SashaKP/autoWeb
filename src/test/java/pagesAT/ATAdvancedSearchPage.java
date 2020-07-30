@@ -57,7 +57,7 @@ public class ATAdvancedSearchPage extends BasePageAT {
 	@FindBy (xpath="//div[@data-qaid='chkGrp-spec-Exterior Color-']//div[@class='input-label']")//(xpath="//div[@data-qaid='chkGrp-spec-Exterior Color-']//input[@type='checkbox']")
 	public List<WebElement> chckBoxOptionsExterior;
 	
-	@FindBy (xpath = "//button[@type='submit']")
+	@FindBy (xpath = "//button[@class='btn btn-primary btn-block']")
 	public WebElement bttnSearch;
 	
 	@FindBy (xpath ="//div[contains (text(), 'Your Search Results')]")
@@ -115,6 +115,13 @@ public class ATAdvancedSearchPage extends BasePageAT {
 			}
 		}
 	}
+	//select year
+		public void selectYear(String string, String string2) {
+		Select select = new Select(yearFrom);
+		select.selectByVisibleText(string);
+		Select select2 = new Select(yearTo);
+		select2.selectByVisibleText(string2);
+	}
 	
 	//selectingPrice
 	public void selectPrice(String string, String string2) {
@@ -123,4 +130,21 @@ public class ATAdvancedSearchPage extends BasePageAT {
 		Select select1 = new Select(maxPrice);
 		select1.selectByVisibleText(string2);
 	}
-}
+	
+	public void selectExteriorColor(String string2) throws InterruptedException {
+		exteriorColor.click();
+		List<WebElement> groupCheckBox = chckBoxOptionsExterior;
+				for(WebElement checkBox: groupCheckBox) {
+			
+			String actual=checkBox.getText();
+			if(string2.equalsIgnoreCase(actual)){
+				System.out.println("you're on the right path");
+				checkBox.click();
+				break;
+			}
+		}
+			Thread.sleep(1000);
+//		if(string2.equals(advancedSearchPg.silverExterior.getText())){
+//		advancedSearchPg.silverExterior.click();
+		}
+	}
